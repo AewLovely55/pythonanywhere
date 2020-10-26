@@ -25,7 +25,7 @@ SECRET_KEY = 'l#d)=k3^2f9^39&__hb26y@cf+p95jv#g=p67-5yf9a1gi-$1+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'AewLovely55.pythonanywhere.com']
+ALLOWED_HOSTS = ['AewLovely55.pythonanywhere.com']
 
 
 # Application definition
@@ -68,6 +68,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL ='login'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 

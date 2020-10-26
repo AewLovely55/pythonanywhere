@@ -1,19 +1,66 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+#from django.http import HttpResponse
+from django.contrib.auth import logout as logout_user
+from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth import login
 
 # Create your views here.
-def index(req):
-	return render(req, 'myweb/index.html')
+def login(request):
+    return render(request,'myweb/login.html')
 
-def united(req):
-	return render(req, 'myweb/united.html')
+def index(request):
+    return render(request,'myweb/index.html')
 
-def detail(request, question_id):
-    return render(request, 'myweb/detail.html')
+def mulan(request):
+    return render(request,'myweb/mulan.html')
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+def tenet(request):
+    return render(request,'myweb/tenet.html')
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+def pmak(request):
+    return render(request,'myweb/pmak.html')
+
+def jom(request):
+    return render(request,'myweb/jom.html')
+
+def bad(request):
+    return render(request,'myweb/bad.html')
+
+def onward(request):
+    return render(request,'myweb/onward.html')
+
+def alive(request):
+    return render(request,'myweb/alive.html')
+
+def bwa(request):
+    return render(request,'myweb/bwa.html')
+
+def extr(request):
+    return render(request,'myweb/extr.html')
+
+def eng(request):
+    return render(request,'myweb/eng.html')
+
+def th(request):
+    return render(request,'myweb/th.html')
+
+def ka(request):
+    return render(request,'myweb/ka.html')
+
+def ct(request):
+    return render(request,'myweb/ct.html')
+
+def signup(request):
+    context = {}
+    form = UserCreationForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            return redirect('index')
+    context['form']=form
+    return render(request,'myweb/signup.html',context)
+
+def logout(req):
+    logout_user(req)
+    return redirect('login')
